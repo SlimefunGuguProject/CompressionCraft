@@ -62,8 +62,6 @@ public class MediumCcDecompressor extends AContainer implements RecipeDisplayIte
         return new ItemStack(SlimefunItems.ELECTRIC_PRESS);
     }
     @Override
-    public String getInventoryTitle() {return "&6Average CC Decompressor";}
-    @Override
     public String getMachineIdentifier() {
         return "CC_DECOMPRESSOR_2";
     }

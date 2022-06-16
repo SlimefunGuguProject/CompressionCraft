@@ -71,7 +71,7 @@ public class CcElectricSfCompressor extends AContainer implements RecipeDisplayI
 
     @Override
     public String getInventoryTitle() {
-        return "&cElectric Slimefun Compressor";
+        return "&cCC粘液压缩机";
     }
 
     @Override

@@ -2,8 +2,8 @@ package me.jasperchasetoq.compressioncraft;
 
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
 import me.jasperchasetoq.compressioncraft.setup.CompressionCraftItemsSetup;
+import net.guizhanss.guizhanlib.updater.GuizhanBuildsUpdater;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.annotation.Nonnull;
@@ -22,8 +22,8 @@ public class CompressionCraft extends JavaPlugin implements SlimefunAddon {
             saveDefaultConfig();
         }
 
-        if (getConfig().getBoolean("options.auto-update") && getDescription().getVersion().startsWith("DEV - ")) {
-            new GitHubBuildsUpdater(this, getFile(), "JasperChaseTOQ/CompressionCraft/master").start();
+        if (getConfig().getBoolean("options.auto-update") && getDescription().getVersion().startsWith("Build")) {
+            new GuizhanBuildsUpdater(this, getFile(), "SlimefunGuguProject", "CompressionCraft", "master", false, "zh-CN").start();
         }
     }
     @Override

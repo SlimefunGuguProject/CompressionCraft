@@ -62,8 +62,6 @@ public class GoodCcCompressor extends AContainer implements RecipeDisplayItem {
         return new ItemStack(SlimefunItems.ELECTRIC_PRESS);
     }
     @Override
-    public String getInventoryTitle() {return "&2Good CC Compressor";}
-    @Override
     public String getMachineIdentifier() {
         return "CC_COMPRESSOR_4";
     }

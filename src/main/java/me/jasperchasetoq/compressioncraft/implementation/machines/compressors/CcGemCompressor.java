@@ -66,7 +66,7 @@ public class CcGemCompressor extends AContainer implements RecipeDisplayItem {
 
     @Override
     public ItemStack getProgressBar() {return new ItemStack(SlimefunItems.ELECTRIC_PRESS);}
-    @Override public String getInventoryTitle() {return "&4CompressorCraft's Gem Compressor";}
+    @Override public String getInventoryTitle() {return "&4CC宝石压缩机";}
     @Override
     public String getMachineIdentifier() {return "CC_GEM_COMPRESSOR";}
     @Override
