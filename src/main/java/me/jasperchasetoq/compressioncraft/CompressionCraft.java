@@ -3,6 +3,9 @@ package me.jasperchasetoq.compressioncraft;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import me.jasperchasetoq.compressioncraft.setup.CompressionCraftItemsSetup;
+
+import org.bstats.bukkit.Metrics;
+
 import net.guizhanss.guizhanlib.updater.GuizhanBuildsUpdater;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -24,17 +27,18 @@ public class CompressionCraft extends JavaPlugin implements SlimefunAddon {
 
         if (getConfig().getBoolean("options.auto-update") && getDescription().getVersion().startsWith("Build")) {
             new GuizhanBuildsUpdater(this, getFile(), "SlimefunGuguProject", "CompressionCraft", "master", false, "zh-CN").start();
+
+            int pluginId = 15648; // <-- Replace with the id of your plugin!
+            Metrics metrics = new Metrics(this, pluginId);
         }
     }
     @Override
     public void onDisable() {
         // Logic for disabling the plugin...
     }
-
     @Override
     public String getBugTrackerURL() {
-        // You can return a link to your Bug Tracker instead of null here
-        return null;
+        return "https://github.com/SlimefunGuguProject/CompressionCraft/issues";
     }
 
     @Nonnull
@@ -52,5 +56,8 @@ public class CompressionCraft extends JavaPlugin implements SlimefunAddon {
         public static CompressionCraft getInstance() {
             return instance;
         }
+    public static String getVersion() {
+        return instance.getDescription().getVersion();
+    }
     }
 
