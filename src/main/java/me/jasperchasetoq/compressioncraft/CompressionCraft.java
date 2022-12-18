@@ -1,35 +1,35 @@
 package me.jasperchasetoq.compressioncraft;
 
-import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
+import io.github.mooy1.infinitylib.core.AbstractAddon;
+import io.github.mooy1.infinitylib.metrics.bukkit.Metrics;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
-import me.jasperchasetoq.compressioncraft.setup.CompressionCraftItemsSetup;
+import me.jasperchasetoq.compressioncraft.setup.CompressionCraftItemSetup;
 
-import org.bstats.bukkit.Metrics;
-
-import net.guizhanss.guizhanlib.updater.GuizhanBuildsUpdater;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import javax.annotation.Nonnull;
 import java.io.File;
 
-public class CompressionCraft extends JavaPlugin implements SlimefunAddon {
+public class CompressionCraft extends AbstractAddon {
 
+    private static CompressionCraft instance;
 
+    public CompressionCraft() {
+        super("JasperChaseTOQ", "CompressionCraft", "master", "options.auto-update");
+    }
     @Override
-    public void onEnable() {
+    public void enable() {
+
+        instance = this;
+
+        Metrics metrics = new Metrics(this, 15648);
 
         Config cfg = new Config(this);
 
-        CompressionCraftItemsSetup.setup(this);
+        CompressionCraftItemSetup.setup(this);
         if (!new File(getDataFolder(), "config.yml").exists()) {
             saveDefaultConfig();
         }
 
         if (getConfig().getBoolean("options.auto-update") && getDescription().getVersion().startsWith("Build")) {
             new GuizhanBuildsUpdater(this, getFile(), "SlimefunGuguProject", "CompressionCraft", "master", false, "zh-CN").start();
-
-            int pluginId = 15648; // <-- Replace with the id of your plugin!
-            Metrics metrics = new Metrics(this, pluginId);
         }
     }
     @Override
@@ -41,23 +41,13 @@ public class CompressionCraft extends JavaPlugin implements SlimefunAddon {
         return "https://github.com/SlimefunGuguProject/CompressionCraft/issues";
     }
 
-    @Nonnull
     @Override
-    public JavaPlugin getJavaPlugin() {
-        return this;
+    public void disable() {
+        instance = null;
     }
-
-    private static CompressionCraft instance;
-
-  public CompressionCraft() {
-            instance = this;
-        }
-
-        public static CompressionCraft getInstance() {
+    public static CompressionCraft getInstance() {
             return instance;
         }
-    public static String getVersion() {
-        return instance.getDescription().getVersion();
-    }
-    }
+
+}
 
