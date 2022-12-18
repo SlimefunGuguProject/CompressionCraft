@@ -4,6 +4,7 @@ import io.github.mooy1.infinitylib.core.AbstractAddon;
 import io.github.mooy1.infinitylib.metrics.bukkit.Metrics;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import me.jasperchasetoq.compressioncraft.setup.CompressionCraftItemSetup;
+import net.guizhanss.guizhanlibplugin.updater.GuizhanBuildsUpdaterWrapper;
 
 import java.io.File;
 
@@ -12,7 +13,7 @@ public class CompressionCraft extends AbstractAddon {
     private static CompressionCraft instance;
 
     public CompressionCraft() {
-        super("JasperChaseTOQ", "CompressionCraft", "master", "options.auto-update");
+        super("SlimefunGuguProject", "CompressionCraft", "master", "options.auto-update");
     }
     @Override
     public void enable() {
@@ -29,18 +30,10 @@ public class CompressionCraft extends AbstractAddon {
         }
 
         if (getConfig().getBoolean("options.auto-update") && getDescription().getVersion().startsWith("Build")) {
-            new GuizhanBuildsUpdater(this, getFile(), "SlimefunGuguProject", "CompressionCraft", "master", false, "zh-CN").start();
+            GuizhanBuildsUpdaterWrapper.start(this, getFile(), "SlimefunGuguProject", "CompressionCraft", "master",
+                false);
         }
     }
-    @Override
-    public void onDisable() {
-        // Logic for disabling the plugin...
-    }
-    @Override
-    public String getBugTrackerURL() {
-        return "https://github.com/SlimefunGuguProject/CompressionCraft/issues";
-    }
-
     @Override
     public void disable() {
         instance = null;
