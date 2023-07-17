@@ -6,7 +6,9 @@ main: me.jasperchasetoq.compressioncraft.CompressionCraft
 website: https://github.com/JasperChaseTOQ/CompressionCraft
 version: ${project.version}
 api-version: 1.17
-depend: [Slimefun, GuizhanLibPlugin]
+depend: [Slimefun]
+softdepend:
+  - GuizhanLibPlugin
 commands:
 
   compressioncraft:
